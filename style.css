@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.thumb {
+  display: block;
+  box-sizing: border-box;
+  width: 10vw;
+  height: 20vh;
+  object-fit: cover;
+}
+
+#modal {
+  z-index: 3;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
