@@ -1,7 +1,14 @@
 const photos = [];
 const root = document.querySelector('#root');
 const modal = document.querySelector('#modal');
-modal.addEventListener('click', () => modal.classList = 'hidden');
+let timeout;
+modal.addEventListener('click', () => {
+  modal.classList = 'hidden';
+  clearTimeout(timeout);
+  modal.childNodes.forEach(child => {
+    child.classList = 'modalImg hidden'
+  });
+});
 
 const loadImages = () => {
   photos.forEach(photo => {
@@ -16,7 +23,18 @@ const loadImages = () => {
 }
 
 const showInModal = (src) => {
-  modal.innerHTML = `<img src='${src}' />`
+  const newImg = document.createElement('img');
+  newImg.src = src;
+  newImg.classList = 'modalImg hidden';
+  if(modal.childNodes.length > 1) {
+    modal.removeChild(modal.childNodes[0]);
+  }
+  modal.childNodes[0].classList = 'modalImg hidden';
+  modal.append(newImg);
+  timeout = setTimeout(() => {
+    newImg.classList = 'modalImg show';
+    modal.childNodes[0].classList = 'modalImg hidden';
+  }, 300);
   modal.classList = 'show';
 }
 
