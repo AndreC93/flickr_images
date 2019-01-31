@@ -27,6 +27,7 @@ const showInModal = (src) => {
   newImg.src = src;
   newImg.classList = 'modalImg hidden';
   if(modal.childNodes.length > 1) {
+    if(modal.childNodes[1].src === src) return;
     modal.removeChild(modal.childNodes[0]);
   }
   modal.childNodes[0].classList = 'modalImg hidden';
