@@ -17,6 +17,7 @@ const loadImages = () => {
     const img = document.createElement('img');
     img.src = photoURL;
     img.classList = 'thumb';
+    img.draggable = false;
     img.addEventListener('click', () => showInModal(photoURL));
     root.append(img);
   });
@@ -25,9 +26,10 @@ const loadImages = () => {
 const showInModal = (src) => {
   const newImg = document.createElement('img');
   newImg.src = src;
-  newImg.classList = 'modalImg hidden';
+  newImg.classList = 'modalImg hidden loading';
   if(modal.childNodes.length > 1) {
-    if(modal.childNodes[1].src === src) return;
+    const prevImg = modal.childNodes[1];
+    if(prevImg.src === src && (!prevImg.classList.contains('hidden') || prevImg.classList.contains('loading'))) return;
     modal.removeChild(modal.childNodes[0]);
   }
   modal.childNodes[0].classList = 'modalImg hidden';
